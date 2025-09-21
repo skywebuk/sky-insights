@@ -1,0 +1,1987 @@
+/* ========================================
+   1. CSS Variables & Root Settings
+   ======================================== */
+:root {
+    /* Colors */
+    --primary-color: #007aff;
+    --text-dark: #1d1d1f;
+    --text-light: #86868b;
+    --background-light: #ffffff;
+    --background-muted: #f5f5f7;
+    --border-color: #e5e5e7;
+    --success-color: #34c759;
+    --warning-color: #ff9500;
+    --error-color: #ff3b30;
+    --ai-gradient: linear-gradient(135deg, #5856d6, #007aff);
+    
+    /* Spacing */
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    
+    /* Other */
+    --border-radius: 8px;
+}
+
+/* ========================================
+   2. Base Styles & Resets
+   ======================================== */
+.sky-insights-dashboard {
+    padding: 0;
+    background: var(--background-light);
+    min-height: calc(100vh - 32px);
+    position: relative;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text-dark);
+}
+
+/* ========================================
+   3. Header Section
+   ======================================== */
+.sky-insights-header {
+    padding: var(--spacing-lg) 32px var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
+    background: var(--background-light);
+}
+
+.sky-header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.sky-insights-header h1 {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin: 0;
+    letter-spacing: -0.3px;
+}
+
+.sky-header-controls {
+    display: flex;
+    gap: var(--spacing-md);
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.sky-header-filters {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Powered By Badge */
+.sky-powered-by {
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 6px 10px;
+}
+
+.sky-powered-by a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    font-size: 11px;
+    color: var(--text-light);
+    transition: opacity 0.2s ease;
+}
+
+.sky-powered-by a:hover {
+    opacity: 0.8;
+}
+
+.sky-powered-by img {
+    height: 16px;
+    width: auto;
+}
+
+/* ========================================
+   4. Navigation & Tabs
+   ======================================== */
+.sky-navigation-tabs {
+    display: flex;
+    gap: var(--spacing-lg);
+    padding: 0 32px;
+    background: var(--background-light);
+    border-bottom: 1px solid var(--border-color);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.sky-tab {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md) 0;
+    border: none;
+    background: none;
+    font-size: 14px;
+    color: var(--text-light);
+    cursor: pointer;
+    position: relative;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+}
+
+.sky-tab:hover {
+    color: var(--text-dark);
+}
+
+.sky-tab.active {
+    color: var(--text-dark);
+}
+
+.sky-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--primary-color);
+}
+
+.sky-tab svg {
+    width: 16px;
+    height: 16px;
+}
+
+.sky-tab-content {
+    display: none;
+    padding: 32px;
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+.sky-tab-content.active {
+    display: block;
+}
+
+.sky-tab-content.loading {
+    opacity: 0.5;
+}
+
+/* ========================================
+   5. Form Elements & Inputs
+   ======================================== */
+.sky-select,
+.sky-date-input,
+.sky-comparison-select {
+    padding: var(--spacing-sm) 14px;
+    border: 1px solid #d2d2d7;
+    border-radius: var(--border-radius);
+    background: var(--background-light);
+    font-size: 14px;
+    color: var(--text-dark);
+    cursor: pointer;
+}
+
+.sky-date-input {
+    padding-right: 32px;
+    min-width: 200px;
+    appearance: none;
+}
+
+.sky-comparison-select {
+    padding: 6px 12px;
+    font-size: 13px;
+}
+
+/* Date Filter */
+.sky-date-filter {
+    position: relative;
+    display: inline-block;
+}
+
+.sky-date-filter::after {
+    content: '▼';
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 10px;
+    color: var(--text-light);
+    pointer-events: none;
+}
+
+.sky-date-presets {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 4px;
+    background: var(--background-light);
+    border: 1px solid #d2d2d7;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    z-index: 1000;
+    padding: var(--spacing-sm);
+    min-width: 240px;
+}
+
+.sky-date-presets button {
+    display: block;
+    width: 100%;
+    padding: var(--spacing-sm) 12px;
+    border: none;
+    background: none;
+    text-align: left;
+    font-size: 14px;
+    color: var(--text-dark);
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+}
+
+.sky-date-presets button:hover {
+    background: var(--background-muted);
+}
+
+.sky-date-presets button.active {
+    background: var(--primary-color);
+    color: var(--background-light);
+}
+
+.sky-custom-range {
+    display: flex;
+    gap: var(--spacing-sm);
+    align-items: center;
+    padding-top: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+    border-top: 1px solid var(--border-color);
+}
+
+.sky-custom-range input {
+    flex: 1;
+    padding: 6px 10px;
+    border: 1px solid #d2d2d7;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+/* ========================================
+   6. Content Boxes & Containers
+   ======================================== */
+.sky-insights-box,
+.sky-mini-box {
+    background: var(--background-light);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.sky-insights-box {
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.sky-mini-box {
+    padding: 20px;
+}
+
+.sky-box-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-md);
+}
+
+.sky-box-header h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin: 0;
+    letter-spacing: -0.2px;
+}
+
+.sky-box-description {
+    color: var(--text-light);
+    font-size: 14px;
+    margin: -8px 0 var(--spacing-lg) 0;
+}
+
+.sky-box-controls {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+/* ========================================
+   7. Buttons & Controls
+   ======================================== */
+.sky-btn-primary,
+.sky-btn-secondary,
+.sky-apply-range,
+.sky-export-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+}
+
+.sky-btn-primary,
+.sky-apply-range {
+    background: var(--primary-color);
+    color: var(--background-light);
+}
+
+.sky-btn-primary:hover,
+.sky-apply-range:hover {
+    background: #0051d5;
+}
+
+.sky-btn-secondary {
+    background: var(--background-muted);
+    color: var(--text-dark);
+    border: 1px solid #d2d2d7;
+}
+
+.sky-btn-secondary:hover {
+    background: #e5e5e7;
+}
+
+.sky-apply-range {
+    padding: 6px 12px;
+    font-size: 13px;
+}
+
+.sky-btn-primary,
+.sky-btn-secondary {
+    flex: 1;
+    padding: var(--spacing-sm) 12px;
+    font-size: 13px;
+}
+
+.sky-export-btn {
+    padding: var(--spacing-sm) 14px;
+    background: var(--background-light);
+    border: 1px solid #d2d2d7;
+    font-size: 14px;
+    color: var(--text-dark);
+}
+
+.sky-export-btn:hover {
+    background: var(--background-muted);
+    border-color: #c7c7cc;
+}
+
+.sky-export-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* Toggle Controls */
+.sky-toggle-view {
+    display: flex;
+    background: var(--background-muted);
+    border-radius: var(--border-radius);
+    padding: 3px;
+}
+
+.sky-toggle {
+    padding: 6px 16px;
+    border: none;
+    background: transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--text-light);
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.sky-toggle:hover {
+    color: var(--text-dark);
+}
+
+.sky-toggle.active {
+    background: var(--background-light);
+    color: var(--text-dark);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================
+   8. Data Display Elements
+   ======================================== */
+/* Totals Section */
+.sky-totals {
+    margin-bottom: 32px;
+}
+
+.sky-total-amount {
+    font-size: 25px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.sky-total-count {
+    font-size: 16px;
+    color: var(--text-light);
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.sky-donations-count {
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+.sky-new-donors-count {
+    color: var(--success-color);
+    font-weight: 500;
+    position: relative;
+    padding-left: var(--spacing-md);
+}
+
+.sky-new-donors-count::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--text-light);
+}
+
+.sky-date-range-display {
+    color: var(--text-light);
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+/* Mini Box Elements */
+.sky-mini-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.sky-mini-box h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin: 0;
+    letter-spacing: -0.2px;
+}
+
+.sky-mini-totals {
+    margin-bottom: 20px;
+}
+
+.sky-mini-amount {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-dark);
+    letter-spacing: -0.3px;
+}
+
+.sky-mini-count {
+    font-size: 14px;
+    color: var(--text-light);
+    font-weight: 400;
+}
+
+/* ========================================
+   9. Charts & Visualizations
+   ======================================== */
+.sky-chart-container {
+    position: relative;
+    height: 300px;
+}
+
+.sky-mini-chart-container {
+    height: 80px;
+}
+
+.sky-chart-loading {
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+
+/* ========================================
+   10. Tables
+   ======================================== */
+.sky-data-table {
+    margin-top: var(--spacing-lg);
+    overflow-x: auto;
+}
+
+.sky-data-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.sky-data-table th {
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-light);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.sky-data-table td {
+    padding: 12px 16px;
+    font-size: 14px;
+    color: var(--text-dark);
+    border-bottom: 1px solid var(--background-muted);
+}
+
+.sky-data-table tbody tr:hover {
+    background: var(--background-muted);
+}
+
+.sky-data-table h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin: 0 0 var(--spacing-md) 0;
+}
+
+/* ========================================
+   11. Pagination
+   ======================================== */
+.sky-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+}
+
+.sky-pagination button {
+    padding: 6px 12px;
+    border: 1px solid #d2d2d7;
+    background: var(--background-light);
+    border-radius: 6px;
+    font-size: 13px;
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.sky-pagination button:hover:not(:disabled) {
+    background: var(--background-muted);
+}
+
+.sky-pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.sky-pagination button.active {
+    background: var(--primary-color);
+    color: var(--background-light);
+    border-color: var(--primary-color);
+}
+
+.sky-pagination span {
+    color: var(--text-light);
+    font-size: 13px;
+    margin: 0 4px;
+}
+
+.sky-record-count {
+    margin-left: var(--spacing-md);
+}
+
+/* ========================================
+   12. Performance Metrics
+   ======================================== */
+.sky-performance-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 24px 0;
+}
+
+.sky-metric-box {
+    background: var(--background-light);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.sky-metric-box:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+.sky-metric-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md) 0;
+    border-bottom: 1px solid var(--background-muted);
+}
+
+.sky-metric-item:last-child {
+    border-bottom: none;
+}
+
+.sky-metric-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.sky-metric-header h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+.sky-metric-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sky-metric-main {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.sky-metric-value {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1;
+}
+
+.sky-metric-percentage {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 6px;
+}
+
+.sky-metric-percentage.positive {
+    color: var(--success-color);
+    background: rgba(52, 199, 89, 0.1);
+}
+
+.sky-metric-percentage.negative {
+    color: var(--error-color);
+    background: rgba(255, 59, 48, 0.1);
+}
+
+.sky-metric-percentage.negative svg {
+    transform: rotate(180deg);
+}
+
+.sky-metric-percentage svg {
+    width: 12px;
+    height: 12px;
+}
+
+.sky-metric-details {
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.sky-metric-comparison {
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+.sky-metric-period-label {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-bottom: 8px;
+}
+
+.sky-metric-average {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+.sky-metric-status {
+    font-size: 13px;
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+.sky-metric-status.needs-attention {
+    color: var(--warning-color);
+}
+
+/* Live Indicator */
+.sky-live-indicator {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--success-color);
+    font-weight: 500;
+}
+
+.sky-live-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--success-color);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+/* ========================================
+   13. Customer Analytics
+   ======================================== */
+.sky-customer-overview {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 32px;
+}
+
+.sky-metric-card {
+    background: var(--background-muted);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+}
+
+.sky-metric-card h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-light);
+    margin: 0 0 12px 0;
+}
+
+.sky-metric-percent {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: var(--spacing-sm);
+}
+
+.sky-new-customers-percent {
+    color: var(--success-color);
+}
+
+.sky-returning-customers-percent {
+    color: var(--primary-color);
+}
+
+.sky-retention-rate {
+    color: #5856d6;
+}
+
+.sky-metric-info {
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+/* Customer Status Badges */
+.customer-status {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.customer-status.active {
+    background: #d1f7d1;
+    color: #00a400;
+}
+
+.customer-status.inactive {
+    background: #ffe5e5;
+    color: var(--error-color);
+}
+
+.customer-status.moderate {
+    background: #fff3cd;
+    color: var(--warning-color);
+}
+
+/* ========================================
+   14. Heatmap
+   ======================================== */
+.sky-heatmap-section {
+    background: var(--background-muted);
+    border-radius: 16px;
+    padding: var(--spacing-lg);
+    margin-bottom: 32px;
+}
+
+.sky-heatmap-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.sky-heatmap-header h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+.sky-heatmap-controls {
+    display: flex;
+    background: var(--background-light);
+    border-radius: var(--border-radius);
+    padding: 4px;
+    gap: 4px;
+}
+
+.sky-heatmap-toggle {
+    padding: 6px 16px;
+    border: none;
+    background: transparent;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.sky-heatmap-toggle.active {
+    background: var(--primary-color);
+    color: var(--background-light);
+}
+
+.sky-heatmap-wrapper {
+    background: var(--background-light);
+    border-radius: 12px;
+    padding: var(--spacing-lg);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.sky-heatmap-container {
+    display: flex;
+    gap: 20px;
+    align-items: stretch;
+}
+
+.sky-heatmap-days {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--text-light);
+    font-weight: 500;
+    padding: var(--spacing-sm) 0;
+}
+
+.sky-heatmap-days div {
+    height: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.sky-heatmap-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.sky-heatmap-grid {
+    display: grid;
+    grid-template-columns: repeat(24, 1fr);
+    grid-template-rows: repeat(7, 1fr);
+    gap: 3px;
+    flex: 1;
+    min-height: 200px;
+}
+
+.sky-heatmap-cell {
+    aspect-ratio: 1;
+    background: var(--background-light);
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.sky-heatmap-cell:hover {
+    transform: scale(1.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+}
+
+.sky-heatmap-cell.peak {
+    animation: glow 2s ease-in-out infinite;
+}
+
+.sky-heatmap-tooltip {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.9);
+    color: var(--background-light);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    white-space: nowrap;
+    z-index: 10000;
+    pointer-events: none;
+    display: none;
+}
+
+.sky-heatmap-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: rgba(0, 0, 0, 0.9);
+}
+
+.sky-heatmap-hours {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--text-light);
+    margin-top: 12px;
+    padding: 0 4px;
+}
+
+.sky-heatmap-legend {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-top: 20px;
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+.sky-heatmap-legend-scale {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.sky-heatmap-legend-item {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+}
+
+/* ========================================
+   15. AI Features
+   ======================================== */
+.sky-ai-indicator {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    background: linear-gradient(135deg, rgba(88, 86, 214, 0.1), rgba(0, 122, 255, 0.1));
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #5856d6;
+}
+
+.sky-ai-indicator svg {
+    width: 16px;
+    height: 16px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.sky-ai-badge {
+    background: #e3f2fd;
+    color: #1976d2;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.sky-ai-insights-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 32px;
+}
+
+.sky-ai-insight-card {
+    background: linear-gradient(135deg, var(--background-light) 0%, var(--background-muted) 100%);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: var(--spacing-lg);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.sky-ai-insight-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0, 122, 255, 0.05) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
+}
+
+.sky-ai-insight-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    border-color: var(--primary-color);
+}
+
+.sky-ai-card-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--ai-gradient);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--spacing-md);
+    position: relative;
+    z-index: 1;
+}
+
+.sky-ai-card-icon svg {
+    width: 24px;
+    height: 24px;
+    color: var(--background-light);
+}
+
+.sky-ai-card-content h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-light);
+    margin: 0 0 12px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.sky-ai-metric {
+    margin-bottom: 12px;
+}
+
+.sky-ai-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-dark);
+    display: block;
+    line-height: 1.2;
+}
+
+.sky-ai-label {
+    font-size: 14px;
+    color: #5856d6;
+    font-weight: 600;
+    display: block;
+    margin-top: 4px;
+}
+
+.sky-ai-description {
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* AI Recommendations */
+.sky-ai-recommendations {
+    background: linear-gradient(135deg, var(--background-muted) 0%, var(--background-light) 100%);
+    border-radius: 16px;
+    padding: var(--spacing-lg);
+    border: 1px solid var(--border-color);
+}
+
+.sky-ai-recommendations h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin: 0 0 20px 0;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.sky-ai-recommendations h3::before {
+    content: '✨';
+    font-size: 20px;
+}
+
+.sky-recommendations-grid {
+    display: grid;
+    gap: var(--spacing-md);
+}
+
+.sky-recommendation-item {
+    background: var(--background-light);
+    border-radius: 12px;
+    padding: var(--spacing-md) 20px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    transition: all 0.2s ease;
+}
+
+.sky-recommendation-item:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.sky-recommendation-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--success-color), #00c7be);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.sky-recommendation-icon.warning {
+    background: linear-gradient(135deg, var(--warning-color), var(--error-color));
+}
+
+.sky-recommendation-icon.info {
+    background: var(--ai-gradient);
+}
+
+.sky-recommendation-icon svg {
+    width: 20px;
+    height: 20px;
+    color: var(--background-light);
+}
+
+.sky-recommendation-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin: 0 0 4px 0;
+}
+
+.sky-recommendation-content p {
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.sky-recommendation-content strong {
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+/* ========================================
+   16. Export & Dropdowns
+   ======================================== */
+.sky-export-controls {
+    position: relative;
+}
+
+.sky-export-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: var(--spacing-sm);
+    background: var(--background-light);
+    border: 1px solid #d2d2d7;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    padding: var(--spacing-md);
+    min-width: 220px;
+    z-index: 1000;
+}
+
+.sky-export-dropdown h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin: 0 0 12px 0;
+}
+
+.sky-export-dropdown label {
+    display: block;
+    padding: var(--spacing-sm) 0;
+    font-size: 14px;
+    color: var(--text-dark);
+    cursor: pointer;
+}
+
+.sky-export-dropdown input[type="radio"] {
+    margin-right: var(--spacing-sm);
+}
+
+.sky-export-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--border-color);
+}
+
+/* ========================================
+   17. Payment Icons
+   ======================================== */
+.payment-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    vertical-align: middle;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.payment-icon-paypal {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTcuMDc2IDE5LjljLS4xMzggMC0uMjU0LS4xMDQtLjI3LS4yNDNsLS44NzUtNS40MjNjLS4wMi0uMTE4LjA3NS0uMjI0LjE5NS0uMjI0aDEuMjVjLjEzOCAwIC4yNTUuMTA0LjI3LjI0M2wuMjM2IDEuNDc0Yy4wMTYuMTM5LjEzMi4yNDMuMjcuMjQzaDEuMDg2YzIuNjUgMCA0LjE0My0xLjI3NSA0LjUyNS0zLjgwMi4xNzItMS4xNC4wMDctMS45NDUtLjQ4Ny0yLjU0NC0uNTI1LS42MzUtMS40Ni0uOTU0LTIuNzgtLjk1NEg4LjUzYy0uMjkyIDAtLjU0NC4yMTgtLjU3Ny41MDdsLTEuMjIgNy41OGMtLjAyNS4xNTguMDk4LjMuMjU4LjNoMi40MjNsLS4xNy45OTNjLS4wMi4xMzguMDg2LjI2My4yMjcuMjYzaDIuMDMxbS00LjczNC02LjJsLjQ4NC0zLjA0M2MuMDMzLS4yODkuMjgzLS41MDcuNTc3LS41MDdoNS40MjFjLjY0NCAwIDEuMjQ2LjA0MiAxLjc5Ni4xMy4xNi4wMjYuMzE2LjA1Ni40NjcuMDkuMTUuMDM1LjI5Ny4wNzQuNDQxLjExOC4wNzEuMDIyLjE0LjA0NS4yMDguMDcuNDIzLjE1My44MDYuMzQ2IDEuMTQ4LjU4LjE0MS0xLjY1NC0uMDAxLTIuNzkyLS44OC0zLjQ5NEMxNC44OTcgNS40IDEzLjI5MiA1IDExLjMzIDVoLTUuMTdhLjU3OC41NzggMCAwMC0uNTc3LjUwN2wtMS43MDIgMTAuNTAzYy0uMDI5LjE4NC4xMTMuMzUuMy4zNWgyLjc1NiIgZmlsbD0iIzAwOWNkZSIvPgo8L3N2Zz4=');
+}
+
+.payment-icon-google-pay {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTIyLjU2IDEyLjI1YzAtLjc4LS4wNy0xLjUzLS4yLTIuMjVIMTJ2NC4yNmg1LjkyYy0uMjYgMS4zNy0xLjA0IDIuNTMtMi4yMSAzLjMxdjIuNzdoMy41N2MyLjA4LTEuOTIgMy4yOC00Ljc0IDMuMjgtOC4wOXoiIGZpbGw9IiM0Mjg1RjQiLz4KPHBhdGggZD0iTTEyIDIzYzIuOTcgMCA1LjQ2LS45OCA3LjI4LTIuNjZsLTMuNTctMi43N2MtLjk4LjY2LTIuMjMgMS4wNi0zLjcxIDEuMDYtMi44NiAwLTUuMjktMS45My02LjE2LTQuNTNIMi4xOHYyLjg0QzMuOTkgMjAuNTMgNy43IDIzIDEyIDIzeiIgZmlsbD0iIzM0QTg1MyIvPgo8cGF0aCBkPSJNNS44NCAxNC4wOWMtLjIyLS42Ni0uMzUtMS4zNi0uMzUtMi4wOXMuMTMtMS40My4zNS0yLjA5VjcuMDdIMi4xOEMxLjQzIDguNTUgMSAxMC4yMiAxIDEyczQgMy40NSAxLjE4IDQuOTNsMi44NS0yLjIyLjgxLS42MnoiIGZpbGw9IiNGQkJDMDUiLz4KPHBhdGggZD0iTTEyIDUuMzhjMS42MiAwIDMuMDYuNTYgNC4yMSAxLjY0bDMuMTUtMy4xNUMxNy40NSAyLjA5IDE0Ljk3IDEgMTIgMSA3LjcgMSAzLjk5IDMuNDcgMi4xOCA3LjA3bDMuNjYgMi44NGMuODctMi42IDMuMy00LjUzIDYuMTYtNC41M3oiIGZpbGw9IiNFQTQzMzUiLz4KPC9zdmc+');
+}
+
+.payment-icon-card {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3QgeD0iMiIgeT0iNSIgd2lkdGg9IjIwIiBoZWlnaHQ9IjE0IiByeD0iMiIgc3Ryb2tlPSIjMzMzIiBzdHJva2Utd2lkdGg9IjIiLz4KPHBhdGggZD0iTTIgMTBIMjIiIHN0cm9rZT0iIzMzMyIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjwvc3ZnPg==');
+}
+
+.payment-icon-apple-pay {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE3LjA1IDguNjNjLS4wOC4wNS0xLjQ5Ljg3LTEuNDkgMi42NSAwIDIuMTIgMS44NiAyLjg3IDEuOTEgMi44OS0uMDEuMDUtLjMgMS4wMy0uOTkgMi4wNC0uNi44Ny0xLjIyIDEuNzMtMi4yIDEuNzUtLjk2LjAyLTEuMjctLjU3LTIuMzctLjU3cy0xLjQ2LjU1LTIuMzguNTljLS45NS4wNC0xLjY4LS45NC0yLjI4LTEuODEtMS4yNC0xLjc4LTIuMTktNC41MS0uOTItNi40Ny42My0uOTcgMS43Ni0xLjU5IDIuOTktMS41OS45NC0uMDIgMS44MS42MiAyLjM4LjYyLjU3IDAgMS42My0uNzcgMi43NS0uNzQuMDkgMCAyLjA1LjAyIDMuMTEgMS41NGwtLjA2LjAzek0xNC4zIDUuNWMuNS0uNjEuODQtMS40Ni43Ni0yLjMtLjczLjAzLTEuNjIuNDktMi4xNSAxLjEtLjQ3LjU0LS44OCAxLjQxLS43NyAyLjI0LjgyLjA2IDEuNjUtLjQxIDIuMTYtMS4wNHoiIGZpbGw9IiMzMzMiLz4KPC9zdmc+');
+}
+
+.payment-icon-bank {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTMgMjFoMThNMyA3djFhMyAzIDAgMDAzIDNoMTJhMyAzIDAgMDAzLTNWN00zIDdsMi0yaDEybDIgMk0zIDd2MTRBMV0xIDEgMCAwMDQgMjFoMTZhMSAxIDAgMDAxLTFWN005IDE0aDYiIHN0cm9rZT0iIzMzMyIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPC9zdmc+');
+}
+
+/* ========================================
+   18. Utility Classes
+   ======================================== */
+/* Info Icons */
+.sky-info-icon {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--background-muted);
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: help;
+}
+
+.sky-metric-info {
+    background: none;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    color: var(--text-light);
+    transition: color 0.2s;
+}
+
+.sky-metric-info:hover {
+    color: var(--text-dark);
+}
+
+/* Tooltips */
+.sky-metric-info[data-tooltip] {
+    position: relative;
+}
+
+.sky-metric-info[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--text-dark);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    margin-bottom: 8px;
+    z-index: 1000;
+}
+
+.sky-metric-info[data-tooltip]:hover::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: var(--text-dark);
+    margin-bottom: 2px;
+}
+
+/* Arrows & Indicators */
+.sky-trend-arrow {
+    font-size: 16px;
+    color: var(--success-color);
+}
+
+.sky-trend-arrow.down {
+    color: var(--error-color);
+    transform: rotate(180deg);
+}
+
+/* Insights Row */
+.sky-insights-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+}
+
+/* Insight Items */
+.sky-insights-icons {
+    color: #5856d6;
+}
+
+.sky-insight-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--background-muted);
+}
+
+.sky-insight-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.sky-insight-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: var(--background-muted);
+    border-radius: 8px;
+    color: #5856d6;
+}
+
+.sky-insight-icon svg {
+    width: 16px;
+    height: 16px;
+}
+
+.sky-insight-text {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sky-insight-label {
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+.sky-insight-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+/* ========================================
+   19. Loading States
+   ======================================== */
+.sky-insights-loading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--background-light);
+    padding: var(--spacing-lg);
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.sky-tab-loading {
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.sky-section-loading {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: var(--border-radius);
+}
+
+/* Spinner */
+.spinner {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+.sky-insights-loading .spinner {
+    width: 20px;
+    height: 20px;
+}
+
+.sky-tab-loading .spinner.is-active {
+    border-color: var(--border-color);
+    border-left-color: var(--primary-color);
+}
+
+.sky-data-table .spinner {
+    margin: 20px auto;
+}
+
+.sky-tab-loading p {
+    font-size: 16px;
+    color: var(--text-light);
+    margin: 0;
+}
+
+/* Loading Dots Animation */
+.sky-loading-dots::after {
+    content: '.';
+    animation: loadingDots 1.5s infinite;
+}
+
+/* Skeleton Loading */
+.sky-skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: 4px;
+}
+
+.sky-skeleton-text {
+    height: 20px;
+    margin-bottom: 10px;
+}
+
+.sky-skeleton-number {
+    height: 36px;
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+.sky-skeleton-chart {
+    height: 300px;
+    width: 100%;
+}
+
+.sky-metric-box.loading .sky-metric-value {
+    background: var(--background-muted);
+    color: transparent;
+    border-radius: 4px;
+    animation: skeleton-loading 1.5s infinite;
+}
+
+/* ========================================
+   20. States & Feedback
+   ======================================== */
+/* No Data State */
+.sky-no-data {
+    text-align: center;
+    padding: 48px;
+    color: var(--text-light);
+}
+
+.sky-no-data svg {
+    margin-bottom: var(--spacing-md);
+}
+
+/* Fade In Animation */
+.sky-fade-in {
+    animation: fadeIn 0.3s ease-in;
+}
+
+/* ========================================
+   21. Animations
+   ======================================== */
+@keyframes pulse {
+    0%, 100% { 
+        opacity: 1; 
+        transform: scale(1); 
+    }
+    50% { 
+        opacity: 0.8; 
+        transform: scale(1.1); 
+    }
+}
+
+@keyframes glow {
+    0%, 100% { 
+        box-shadow: 0 0 0 0 rgba(0, 122, 255, 0); 
+    }
+    50% { 
+        box-shadow: 0 0 10px 2px rgba(0, 122, 255, 0.4); 
+    }
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes loadingDots {
+    0%, 20% { content: '.'; }
+    40% { content: '..'; }
+    60%, 100% { content: '...'; }
+}
+
+@keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+@keyframes skeleton-loading {
+    0% { opacity: 0.7; }
+    50% { opacity: 0.4; }
+    100% { opacity: 0.7; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ========================================
+   22. Responsive Design
+   ======================================== */
+@media (max-width: 1400px) {
+    .sky-header-controls {
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 1200px) {
+    .sky-insights-header {
+        padding: 20px;
+    }
+
+    .sky-header-top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 12px;
+    }
+
+    .sky-powered-by {
+        align-self: flex-start;
+    }
+
+    .sky-navigation-tabs {
+        padding: 0 20px;
+    }
+
+    .sky-tab-content {
+        padding: 20px;
+    }
+
+    .sky-header-controls {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .sky-header-filters {
+        flex-wrap: wrap;
+    }
+
+    .sky-ai-insights-container {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .sky-performance-metrics {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .sky-insights-header h1 {
+        font-size: 20px;
+    }
+
+    .sky-powered-by {
+        font-size: 11px;
+        padding: 6px 10px;
+    }
+
+    .sky-powered-by img {
+        height: 16px;
+    }
+
+    .sky-total-amount {
+        font-size: 32px;
+    }
+
+    .sky-insights-row {
+        grid-template-columns: 1fr;
+    }
+
+    .sky-navigation-tabs {
+        gap: var(--spacing-md);
+    }
+
+    .sky-tab {
+        font-size: 13px;
+        padding: 12px 0;
+    }
+
+    .sky-customer-overview {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .sky-heatmap-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-md);
+    }
+
+    .sky-recommendation-item {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .sky-export-dropdown {
+        right: auto;
+        left: 0;
+    }
+
+    .sky-metric-value {
+        font-size: 24px;
+    }
+    
+    .sky-metric-header h3 {
+        font-size: 13px;
+    }
+    
+    .sky-insight-item {
+        gap: 8px;
+    }
+    
+    .sky-insight-icon {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sky-heatmap-grid {
+        font-size: 10px;
+    }
+
+    .sky-data-table {
+        font-size: 12px;
+    }
+}
+
+/* Modern donation count and comparison styling */
+.sky-total-count {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sky-donations-count {
+    font-size: 28px;
+    font-weight: 600;
+    color: #1d1d1f;
+    letter-spacing: -0.5px;
+}
+
+.sky-yesterday-comparison {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #86868b;
+    font-weight: 500;
+}
+
+.sky-yesterday-amount {
+    color: #06c;
+    font-weight: 600;
+}
+
+.sky-comparison-divider {
+    width: 4px;
+    height: 4px;
+    background: #d2d2d7;
+    border-radius: 50%;
+}
+
+
+.sky-performance-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.sky-metric-box {
+    background: #fff;
+    border: 1px solid #e5e5e7;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.sky-metric-percentage {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.sky-metric-percentage.positive { color: #34c759; }
+.sky-metric-percentage.negative { color: #ff3b30; }
+.sky-metric-percentage.neutral { color: #86868b; }
+
+/* ========================================
+   22. Custom Date Picker Styles - Split View
+   ======================================== */
+.sky-custom-datepicker {
+    position: absolute;
+    background: white;
+    border: 1px solid #d1d1d6;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    z-index: 10000;
+    width: 720px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.sky-datepicker-wrapper {
+    display: flex;
+}
+
+.sky-calendars-container {
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+    flex: 1;
+}
+
+.sky-calendar-month {
+    flex: 1;
+}
+
+.sky-calendar-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    height: 30px;
+}
+
+.sky-nav-prev,
+.sky-nav-next {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #1d1d1f;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.sky-nav-prev:hover,
+.sky-nav-next:hover {
+    background: #f5f5f7;
+}
+
+.sky-month-year {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1d1d1f;
+}
+
+.sky-calendar-grid {
+    width: 100%;
+}
+
+.sky-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 5px;
+}
+
+.sky-weekday {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 500;
+    color: #86868b;
+    padding: 5px 0;
+}
+
+.sky-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+}
+
+.sky-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #1d1d1f;
+    cursor: pointer;
+    border-radius: 4px;
+    position: relative;
+}
+
+.sky-day:hover:not(.empty) {
+    background: #f5f5f7;
+}
+
+.sky-day.empty {
+    cursor: default;
+}
+
+.sky-day.today {
+    font-weight: 600;
+    color: #007aff;
+}
+
+.sky-day.in-range {
+    background: rgba(52, 199, 89, 0.15);
+}
+
+.sky-day.range-start,
+.sky-day.range-end {
+    background: #34c759;
+    color: white;
+    font-weight: 600;
+}
+
+.sky-day.range-start {
+    border-radius: 4px 0 0 4px;
+}
+
+.sky-day.range-end {
+    border-radius: 0 4px 4px 0;
+}
+
+.sky-day.range-start.range-end {
+    border-radius: 4px;
+}
+
+/* Shortcuts Sidebar */
+.sky-shortcuts-sidebar {
+    width: 140px;
+    border-left: 1px solid #e5e5e7;
+    padding: 20px 0;
+}
+
+.sky-shortcuts-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.sky-shortcut {
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 8px 20px;
+    font-size: 14px;
+    color: #1d1d1f;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.sky-shortcut:hover {
+    background: #f5f5f7;
+}
+
+.sky-shortcut.active {
+    background: #007aff;
+    color: white;
+}
+
+/* Footer */
+.sky-datepicker-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-top: 1px solid #e5e5e7;
+    background: #fafafa;
+    border-radius: 0 0 8px 8px;
+}
+
+.sky-selected-dates {
+    font-size: 14px;
+    color: #1d1d1f;
+}
+
+.sky-date-separator {
+    margin: 0 8px;
+    color: #86868b;
+}
+
+.sky-datepicker-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.sky-btn-cancel,
+.sky-btn-apply {
+    padding: 6px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.sky-btn-cancel {
+    background: white;
+    color: #1d1d1f;
+    border: 1px solid #d1d1d6;
+}
+
+.sky-btn-cancel:hover {
+    background: #f5f5f7;
+}
+
+.sky-btn-apply {
+    background: #007aff;
+    color: white;
+}
+
+.sky-btn-apply:hover {
+    background: #0051d5;
+}
+
+/* Prevent body scroll when open */
+body.sky-datepicker-open {
+    overflow: hidden;
+}
